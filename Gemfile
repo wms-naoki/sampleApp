@@ -14,6 +14,11 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'haml-rails'
 gem 'erb2haml'
+gem 'dropzonejs-rails', '~> 0.7.3'
+
+group :assets do
+  gem 'jquery-fileupload-rails'
+end
 
 group :development, :test do
   gem 'sqlite3'
@@ -25,6 +30,10 @@ group :development, :test do
   gem 'guard-spork', '2.1.0'
   gem 'childprocess', '0.3.6'
   gem 'test-unit'
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
 end
 
 group :test do
@@ -52,6 +61,7 @@ gem 'coffee-rails', '4.0.1'
 gem 'jquery-rails', '3.0.4'
 gem 'turbolinks', '2.3.0'
 gem 'jbuilder', '1.0.2'
+gem 'jquery-turbolinks'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
