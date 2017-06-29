@@ -15,6 +15,7 @@ gem 'rmagick'
 gem 'haml-rails'
 gem 'erb2haml'
 gem 'dropzonejs-rails', '~> 0.7.3'
+gem 'aasm'
 
 group :assets do
   gem 'jquery-fileupload-rails'
