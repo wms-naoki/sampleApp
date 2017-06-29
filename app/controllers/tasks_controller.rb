@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.build(task_params)
     if @task.save
-      flash[:success] = "task created!"
+      flash[:success] = "タスクを追加しました"
       redirect_to root_url
     else
       @feed_items = []
@@ -15,6 +15,20 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
+    redirect_to root_url
+  end
+
+  def start
+    @task = current_user.tasks.find_by(id: params[:task_id])
+    @task.start
+    @task.save
+    redirect_to root_url
+  end
+
+  def finish
+    @task = current_user.tasks.find_by(id: params[:task_id])
+    @task.finish
+    @task.save
     redirect_to root_url
   end
 

@@ -61,7 +61,6 @@ class UsersController < ApplicationController
   end
 
   def upload_image
-    #binding.pry
     @user = User.find(params[:id])
     @user.update_attribute(:image, params[:file])
     render status: 200, json: @user
