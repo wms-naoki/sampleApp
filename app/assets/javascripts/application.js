@@ -13,8 +13,9 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
-//= require bootstrap
+
+//= require _honoka
+//= require _honoka.min
 //= require_tree .
 //= require jquery-fileupload/basic
 //= require dropzone
