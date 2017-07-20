@@ -5,13 +5,13 @@
         = link_to "sample app", root_path, id: "logo"
         %nav
           %ul.nav.pull-right
-            %li= link_to "Home", root_path
-            %li= link_to "Help", help_path
+            %li= link_to "ホーム", root_path
+            %li= link_to "ヘルプ", help_path
             - if signed_in?
-              %li= link_to "Users", users_path
+              %li= link_to "ユーザー", users_path
               %li#fat-menu.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  Account
+                  アカウント
                   %b.caret
                 %ul.dropdown-menu
                   %li= link_to "Profile", current_user
