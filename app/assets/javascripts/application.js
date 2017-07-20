@@ -14,7 +14,6 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 
-//= require _honoka
 //= require _honoka.min
 //= require_tree .
 //= require jquery-fileupload/basic
