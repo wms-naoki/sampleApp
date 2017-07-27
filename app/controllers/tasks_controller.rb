@@ -3,10 +3,12 @@ class TasksController < ApplicationController
   before_action :correct_user,   only: :destroy
 
   def create
-    @task = current_user.tasks.build(task_params)
+    @project = Project.find(params[:project_id])
+    @task = @project.tasks.build(task_params)
+    @task.project_id = @project.id
     if @task.save
       flash[:success] = "タスクを追加しました"
-      redirect_to root_url
+      redirect_to project_path(@project)
     else
       @feed_items = []
       render 'static_pages/home'

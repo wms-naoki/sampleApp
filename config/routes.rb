@@ -1,4 +1,9 @@
 SampleApp::Application.routes.draw do
+  resources :projects do
+    resources :tasks, only: [:create, :destroy] do
+      post :change_status
+    end
+  end
   resources :users do
     member do
       get :following, :followers
