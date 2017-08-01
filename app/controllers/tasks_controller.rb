@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
-  before_action :correct_user,   only: :destroy
+  #before_action :correct_user,   only: :destroy
 
   def create
     @project = Project.find(params[:project_id])
@@ -16,19 +16,30 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @task = Task.find_by(id: params[:task_id])
     @task.destroy
-    redirect_to root_url
+    @project = Project.find(params[:project_id])
+    flash[:success] = "削除"
+    redirect_to project_path(@project)
   end
 
   def start
-    @task = current_user.tasks.find_by(id: params[:task_id])
+    @project = Project.find(params[:project_id])
+    @task = Task.find_by(id: params[:task_id])
     @task.start
-    @task.save
-    redirect_to root_url
+    if @task.save
+      flash[:success] = "開始しました"
+      redirect_to project_path(@project)
+    else
+      @feed_items = []
+      render 'static_pages/home'
+    end
   end
 
   def finish
-    @task = current_user.tasks.find_by(id: params[:task_id])
+    #binding.pry
+    @project = Project.find(params[:project_id])
+    @task = Task.find_by(id: params[:task_id])
     @task.finish
     @task.save
     redirect_to root_url
@@ -37,11 +48,12 @@ class TasksController < ApplicationController
   private
 
     def task_params
-      params.require(:task).permit(:content)
+      params.require(:task).permit(:content, :id, :status)
     end
 
-    def correct_user
-      @task = current_user.tasks.find_by(id: params[:id])
-      redirect_to root_url if @task.nil?
-    end
+    # def correct_user
+    #   binding.pry
+    #   @task = Task.tasks.find_by(id: params[:task_id])
+    #   redirect_to root_url if @task.nil?
+    # end
 end
