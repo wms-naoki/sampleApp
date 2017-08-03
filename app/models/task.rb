@@ -17,4 +17,14 @@ class Task < ActiveRecord::Base
       transitions from: :working, to: :done
     end
   end
+
+  DISPLAY_STATUS = {
+    not_started: "未着手",
+    working: "仕掛り",
+    done: "完了"
+  }
+
+  def status_for_display
+    DISPLAY_STATUS[self.status.to_sym]
+  end
 end

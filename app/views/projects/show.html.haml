@@ -16,6 +16,112 @@
     = f.submit '作成する', { class: "btn btn-large btn-primary" }
 
 - if @feed_items.any?
-  %ol.tasks
-    = render partial: 'shared/feed_item', collection: @feed_items
+  .table_container
+    %table.table.table-striped.table-bordered.table_header
+      %tr
+        %th
+          = "内容"
+        %th
+          = "ステータス"
+        %th
+      - @feed_items.each do |feed_item|
+        %tr
+          %td
+            = feed_item.content
+          %td
+            = feed_item.status_for_display
+          %td
+            - if feed_item.not_started?
+              = link_to "開始", task_start_path(task_id: feed_item.id, project_id: @project.id), method: :start, class: "btn btn-primary btn-sm"
+            - if feed_item.working?
+              = link_to "完了", task_finish_path(task_id: feed_item.id, project_id: @project.id), method: :finish, class: "btn btn-primary btn-sm"
+            = link_to "削除", project_task_path(task_id: feed_item.id, project_id: @project.id), method: :delete, data: { confirm: "削除しますか？" }, title: feed_item.content, class: "btn btn-primary btn-sm"
+    %table.table.table-striped.table-bordered.table_data
+      %tr
+        %th
+          = "1/1"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+        %th
+          = "ぬ"
+      - @feed_items.each do |feed_item|
+        %tr
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = "ぬ"
+          %td
+            = link_to "削除", project_task_path(task_id: feed_item.id, project_id: @project.id), method: :delete, data: { confirm: "削除しますか？" }, title: feed_item.content, class: "btn btn-primary btn-sm"
   = will_paginate @feed_items
