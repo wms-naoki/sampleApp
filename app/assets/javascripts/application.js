@@ -18,3 +18,4 @@
 //= require_tree .
 //= require jquery-fileupload/basic
 //= require dropzone
+//= require fixed_midashi_src

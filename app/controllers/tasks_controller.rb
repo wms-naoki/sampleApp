@@ -15,6 +15,25 @@ class TasksController < ApplicationController
     end
   end
 
+  def edit
+    @project = Project.find(params[:project_id])
+    @task = @project.tasks.find_by(id: params[:id])
+  end
+
+  def update
+    @project = Project.find(params[:project_id])
+    @task = @project.tasks.find_by(id: params[:id])
+    respond_to do |format|
+      if @task.update(task_params)
+        format.html { redirect_to @project, notice: '更新しました' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def destroy
     @task = Task.find_by(id: params[:task_id])
     @task.destroy
@@ -48,7 +67,7 @@ class TasksController < ApplicationController
   private
 
     def task_params
-      params.require(:task).permit(:content, :id, :status)
+      params.require(:task).permit(:content, :id, :status, :planed_time, :actual_time)
     end
 
     # def correct_user
