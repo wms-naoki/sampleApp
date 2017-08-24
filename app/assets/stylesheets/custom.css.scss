@@ -218,8 +218,21 @@ input {
   }
 }
 
+#task_table{
+  .content {
+    min-width: 200px;
+  }
+  .planed_time {
+    min-width: 80px;
+  }
+  .status {
+    min-width: 200px;
+  }
+}
+
 .table_container {
   position: relative;
+  table-layout: fixed;
 }
 
 .table_header {
