@@ -1,4 +1,4 @@
-pclass Task < ActiveRecord::Base
+class Task < ActiveRecord::Base
   include AASM
   belongs_to :project
   has_many :dailies, dependent: :destroy

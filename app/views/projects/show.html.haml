@@ -42,7 +42,10 @@
             - if feed_item.working?
               = link_to "完了", task_finish_path(task_id: feed_item.id, project_id: @project.id), method: :finish, class: "btn btn-primary btn-sm"
             = link_to "削除", project_task_path(task_id: feed_item.id, project_id: @project.id), method: :delete, data: { confirm: "削除しますか？" }, title: feed_item.content, class: "btn btn-primary btn-sm"
-          %td
+          - (@project.start_date..(@project.start_date + 20)).each do |d|
+            %td
+              = feed_item.dailies.find_by(the_date: d).try(:planed_time)
+              = feed_item.dailies.find_by(the_date: d).try(:actual_time)
           %td
           %td
           %td
