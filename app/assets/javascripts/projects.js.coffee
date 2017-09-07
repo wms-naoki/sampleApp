@@ -8,3 +8,9 @@ $ ->
     fixRows: 1
     fixCols: 3
   }
+
+  $('input.planed_time').on "change", ->
+    alert "!"
+
+  $('.sortable').sortable();
+  $('.sortable').disableSelection();

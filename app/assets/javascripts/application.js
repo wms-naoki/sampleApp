@@ -19,3 +19,4 @@
 //= require jquery-fileupload/basic
 //= require dropzone
 //= require jquery.tablefix.min
+//= require jquery-ui.js

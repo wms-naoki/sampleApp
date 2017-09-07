@@ -18,34 +18,36 @@
 - if @feed_items.any?
   .table_container
     %table.table.table-striped.table-bordered{id: "task_table"}
-      %tr
-        %th.content
-          = "内容"
-        %th.planed_time
-          = "予定工数"
-        %th.status
-          = "ステータス"
-        - (@project.start_date..(@project.start_date + 20)).each do |d|
-          %th
-            = d.strftime("%m/%d")
-        %th
-      - @feed_items.each do |feed_item|
+      %thead
         %tr
-          %td
-            = link_to feed_item.content, edit_project_task_path(@project, feed_item)
-          %td
-            = feed_item.planed_time
-          %td
-            = feed_item.status_for_display
-            - if feed_item.not_started?
-              = link_to "開始", task_start_path(task_id: feed_item.id, project_id: @project.id), method: :start, class: "btn btn-primary btn-sm"
-            - if feed_item.working?
-              = link_to "完了", task_finish_path(task_id: feed_item.id, project_id: @project.id), method: :finish, class: "btn btn-primary btn-sm"
-            = link_to "削除", project_task_path(task_id: feed_item.id, project_id: @project.id), method: :delete, data: { confirm: "削除しますか？" }, title: feed_item.content, class: "btn btn-primary btn-sm"
+          %th.content
+            = "内容"
+          %th.planed_time
+            = "予定工数"
+          %th.status
+            = "ステータス"
           - (@project.start_date..(@project.start_date + 20)).each do |d|
+            %th
+              = d.strftime("%m/%d")
+        %th
+      %tbody.sortable
+        - @feed_items.each do |feed_item|
+          %tr{ data: {"task_id": feed_item.id}}
             %td
-              = feed_item.dailies.find_by(the_date: d).try(:planed_time)
-              = feed_item.dailies.find_by(the_date: d).try(:actual_time)
+              = link_to feed_item.content, edit_project_task_path(@project, feed_item)
+            %td{contenteditable: true}
+              = feed_item.planed_time
+            %td
+              = feed_item.status_for_display
+              - if feed_item.not_started?
+                = link_to "開始", task_start_path(task_id: feed_item.id, project_id: @project.id), method: :start, class: "btn btn-primary btn-sm"
+              - if feed_item.working?
+                = link_to "完了", task_finish_path(task_id: feed_item.id, project_id: @project.id), method: :finish, class: "btn btn-primary btn-sm"
+              = link_to "削除", project_task_path(task_id: feed_item.id, project_id: @project.id), method: :delete, data: { confirm: "削除しますか？" }, title: feed_item.content, class: "btn btn-primary btn-sm"
+            - (@project.start_date..(@project.start_date + 20)).each do |d|
+              %td
+                = feed_item.dailies.find_by(the_date: d).try(:planed_time)
+                = feed_item.dailies.find_by(the_date: d).try(:actual_time)
           %td
           %td
           %td
@@ -62,4 +64,3 @@
           %td
           %td
   = will_paginate @feed_items
-          
