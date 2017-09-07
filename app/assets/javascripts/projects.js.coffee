@@ -3,10 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   $('#task_table').tablefix {
-    width: 800
-    height: 500
+    height: 740
+    width: 1200
     fixRows: 1
-    fixCols: 3
   }
 
   $('input.planed_time').on "change", ->

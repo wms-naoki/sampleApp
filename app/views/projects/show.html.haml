@@ -27,9 +27,8 @@
           %th.status
             = "ステータス"
           - (@project.start_date..(@project.start_date + 20)).each do |d|
-            %th
+            %th.day
               = d.strftime("%m/%d")
-        %th
       %tbody.sortable
         - @feed_items.each do |feed_item|
           %tr{ data: {"task_id": feed_item.id}}
@@ -48,19 +47,3 @@
               %td
                 = feed_item.dailies.find_by(the_date: d).try(:planed_time)
                 = feed_item.dailies.find_by(the_date: d).try(:actual_time)
-          %td
-          %td
-          %td
-          %td
-          %td
-          %td
-          %td
-          %td
-          %td
-          %td
-          %td
-          %td
-          %td
-          %td
-          %td
-  = will_paginate @feed_items
