@@ -3,6 +3,9 @@ SampleApp::Application.routes.draw do
     resources :tasks do
       post :change_status
     end
+    resources :task do
+      post 'sort'
+    end
   end
   resources :users do
     member do

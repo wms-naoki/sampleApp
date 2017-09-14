@@ -56,12 +56,17 @@ class TasksController < ApplicationController
   end
 
   def finish
-    #binding.pry
     @project = Project.find(params[:project_id])
     @task = Task.find_by(id: params[:task_id])
     @task.finish
     @task.save
     redirect_to root_url
+  end
+
+  def sort
+    # binding.pry
+    @project = Project.find(params[:project_id])
+    @tasks = @project.tasks
   end
 
   private
