@@ -14,10 +14,10 @@ $ ->
   $('.sortable').sortable update: (event, ui) ->
     $.ajax (document.url + "/task/sort"),
       type: "POST",
-      dataType: "script"
-      # data: {
-      #  "task-id": ui.item[0].attr("data-task-id")
-      #  "order": ui.item[0].rowIndex
-      #}
+      dataType: "script",
+      data: {
+        "task-id" : ($ui.item[0]).attr("data-task-id")
+        "order" : ui.item[0].sectionRowIndex
+      }
 
   $('.sortable').disableSelection();

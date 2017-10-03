@@ -64,9 +64,10 @@ class TasksController < ApplicationController
   end
 
   def sort
-    # binding.pry
+    binding.pry
     @project = Project.find(params[:project_id])
     @tasks = @project.tasks
+    #@tasks.select{ |task| params[:order] }
   end
 
   private
