@@ -22,6 +22,8 @@
         %tr
           %th.content
             = "内容"
+          %th
+            = "担当者"
           %th.planed_time
             = "予定工数"
           %th.status
@@ -34,8 +36,12 @@
           %tr{ data: {"task_id": feed_item.id}}
             %td
               = link_to feed_item.content, edit_project_task_path(@project, feed_item)
-            %td{contenteditable: true}
-              = feed_item.planed_time
+            %td
+              = feed_item.user.name
+            %td
+              / = form_for @task, url:project_tasks_path(@project) do |f|
+              /   = f.number_field :planed_time
+              %input.planed_time{value: feed_item.planed_time}
             %td
               = feed_item.status_for_display
               - if feed_item.not_started?

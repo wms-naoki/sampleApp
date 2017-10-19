@@ -26,10 +26,10 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to @project, notice: '更新しました' }
-        format.json { head :no_content }
+        format.js { render :tasks }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.js { render :tasks }
       end
     end
   end
@@ -65,9 +65,21 @@ class TasksController < ApplicationController
 
   def sort
     binding.pry
-    @project = Project.find(params[:project_id])
-    @tasks = @project.tasks
-    #@tasks.select{ |task| params[:order] }
+    i = 0
+    @task.each do |task|
+      # 移動したタスクにはparams[:order]を当てる
+      if task.id == params[:task_id].to_i
+        task.order = params[:order].to_i
+        task.save
+        next
+      end
+
+      task.order = (i < params[:order].to_i ? i : i + 1)
+      task.save
+      i += 1
+    end
+
+    redirect_to project_path(@project)
   end
 
   private

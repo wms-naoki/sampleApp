@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   include AASM
+  belongs_to :user
   belongs_to :project
   has_many :dailies, dependent: :destroy
   default_scope -> { order('created_at DESC') }

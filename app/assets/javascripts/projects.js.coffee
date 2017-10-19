@@ -9,15 +9,24 @@ $ ->
   }
 
   $('input.planed_time').on "change", ->
-    alert "!"
+    task_id = $($(this).parent().parent()[0]).attr("data-task-id")
+    $.ajax (document.URL + "/tasks/#{task_id}"),
+      type: "PATCH",
+      dataType: "script",
+      data: {
+        task: {
+          planed_time: $(this)[0].value
+        }
+      }
 
   $('.sortable').sortable update: (event, ui) ->
+    console.log(document.url)
     $.ajax (document.url + "/task/sort"),
       type: "POST",
       dataType: "script",
       data: {
-        "task-id" : ($ui.item[0]).attr("data-task-id")
-        "order" : ui.item[0].sectionRowIndex
+        "task_id": $(ui.item[0]).attr("data-task-id")
+        "order": ui.item[0].sectionRowIndex
       }
 
   $('.sortable').disableSelection();
