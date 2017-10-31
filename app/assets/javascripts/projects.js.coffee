@@ -20,8 +20,7 @@ $ ->
       }
 
   $('.sortable').sortable update: (event, ui) ->
-    console.log(document.url)
-    $.ajax (document.url + "/task/sort"),
+    $.ajax (document.URL + "/task/sort"),
       type: "POST",
       dataType: "script",
       data: {
