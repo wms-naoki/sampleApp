@@ -11,5 +11,7 @@
     = f.text_field :content
     = f.label :planed_time
     = f.number_field :planed_time
+    = f.label "担当者"
+    = f.text_field :user
   .actions
-    = f.submit '作成する', {class: "btn btn-large btn-primary"}
+    = f.submit '作成する！', {class: "btn btn-large btn-primary"}
