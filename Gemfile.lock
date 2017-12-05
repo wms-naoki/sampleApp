@@ -52,6 +52,9 @@ GEM
     bootstrap-will_paginate (0.0.9)
       will_paginate
     builder (3.2.3)
+    business_time (0.9.3)
+      activesupport (>= 3.2.0)
+      tzinfo
     byebug (9.0.6)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -138,6 +141,7 @@ GEM
       railties (>= 4.0.1)
     hike (1.2.3)
     hitimes (1.2.4)
+    holiday_jp (0.5.1)
     html2haml (2.2.0)
       erubis (~> 2.7.0)
       haml (>= 4.0, < 6)
@@ -312,6 +316,7 @@ DEPENDENCIES
   bcrypt-ruby (= 3.1.2)
   bootstrap-sass (= 2.3.2.0)
   bootstrap-will_paginate (= 0.0.9)
+  business_time
   capybara (= 2.1.0)
   carrierwave
   childprocess (= 0.3.6)
@@ -327,6 +332,7 @@ DEPENDENCIES
   guard-rspec (= 2.5.0)
   guard-spork (= 2.1.0)
   haml-rails
+  holiday_jp
   jbuilder (= 1.0.2)
   jquery-fileupload-rails
   jquery-rails (= 3.0.4)

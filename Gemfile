@@ -16,6 +16,8 @@ gem 'haml-rails'
 gem 'erb2haml'
 gem 'dropzonejs-rails', '~> 0.7.3'
 gem 'aasm'
+gem 'business_time'
+gem 'holiday_jp'
 
 group :assets do
   gem 'jquery-fileupload-rails'
