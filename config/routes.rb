@@ -2,11 +2,12 @@ SampleApp::Application.routes.draw do
   resources :projects do
     resources :tasks do
       post :change_status
+      post :calculate
+    end
+    resource :task do
+      post :calculate
       post :sort
     end
-    # resources :task do
-    #   post :sort
-    # end
   end
   resources :users do
     member do
