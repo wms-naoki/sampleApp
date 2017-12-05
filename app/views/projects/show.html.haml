@@ -5,8 +5,8 @@
   = @project.name
 
 = link_to '編集', edit_project_path(@project)
-\|
 = link_to '戻る', projects_path
+= link_to '自動計算', calculate_project_task_path(@project), { method: "post", class: "btn btn-primary pull-right" }
 
 = form_for @task, url: project_tasks_path(@project) do |f|
   .field
