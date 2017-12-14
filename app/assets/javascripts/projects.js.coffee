@@ -17,7 +17,7 @@ $ ->
         task: {
           planed_time: $(this)[0].value
         }
-      }
+    }
 
   $('.sortable').sortable update: (event, ui) ->
     task_id = $(ui.item[0]).attr("data-task-id")
@@ -30,3 +30,14 @@ $ ->
       }
 
   $('.sortable').disableSelection();
+
+  $(".select_user_field").on "change", ->
+    task_id = $($(this).parent().parent()[0]).attr("data-task-id")
+    $.ajax (document.URL + "/tasks/#{task_id}"),
+      type: "PATCH",
+      dataType: "script",
+      data: {
+        task: {
+          user_id: $(this).val()
+        }
+    }

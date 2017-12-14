@@ -37,10 +37,8 @@
             %td
               = link_to feed_item.content, edit_project_task_path(@project, feed_item)
             %td
-              = feed_item.user.name
+              = collection_select :task, :user, User.all, :id, :name, { selected: feed_item.user.id }, class: "select_user_field"
             %td
-              / = form_for @task, url:project_tasks_path(@project) do |f|
-              /   = f.number_field :planed_time
               %input.planed_time{value: feed_item.planed_time}
             %td
               = feed_item.status_for_display

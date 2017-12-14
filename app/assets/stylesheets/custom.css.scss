@@ -224,10 +224,15 @@ input {
   }
   .planed_time {
     min-width: 80px;
+    max-width: 50px;
   }
   .status {
     min-width: 200px;
   }
+}
+
+.select_user_field {
+  width: 80px;
 }
 
 .table_container {
